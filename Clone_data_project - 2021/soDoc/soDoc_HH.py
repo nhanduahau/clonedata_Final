@@ -47,8 +47,7 @@ worksheet.write('X1', 'Chỉ số đầu cũ')
 worksheet.write('Y1', 'Chỉ số cuối cũ') 
 worksheet.write('Z1', 'Trạng thái ĐH') 
 worksheet.write('AA1', 'Ghi chú chỉ số')
-worksheet.write('AB1', 'Hình ảnh')  
-worksheet.write('AC1', 'Tháng/Năm')  
+worksheet.write('AB1', 'Tháng/Năm')  
 ID = driver.find_elements(By.CSS_SELECTOR,'div.col_full:nth-child(1)>input')
 ID[0].send_keys("AT_Test")
 time.sleep(1)
@@ -57,17 +56,11 @@ PASS[0].send_keys("1234567@A")
 BTN = driver.find_elements(By.ID,'ctl00_mainContent_login1_LoginCtrl_Login')
 BTN[0].click()
 time.sleep(5)
-
-driver.find_element(By.ID,'ext-gen1172').click()
+driver.find_element(By.XPATH,'/html/body/div[2]/div[2]/div/div/table/tbody/tr/td[2]/table/tbody/tr/td[2]/div').click()
 time.sleep(2)
 driver.find_elements(By.CSS_SELECTOR,'li.x-boundlist-item')[1].click()
-time.sleep(1)
-
-
-
-
-time.sleep(1)
-driver.find_element(By.ID,'ext-gen1212').click()
+time.sleep(2)
+driver.find_element(By.XPATH,'/html/body/div[2]/div[4]/div/table/tbody/tr[15]/td/div').click()
 time.sleep(3)
 thang = driver.find_element(By.NAME,'thang')
 count = 1
@@ -121,26 +114,11 @@ for t in cacThang:
             stt = table[3].find_elements(By.CSS_SELECTOR,"tr.x-grid-row")
             page_c = 0
             maxPage_c = int(driver.find_elements(By.CSS_SELECTOR,'div.x-toolbar-text-default')[4].text.replace("của ",""))
-            ii = 0
             while(page_c != maxPage_c):
                 table = driver.find_elements(By.CSS_SELECTOR,"table.x-grid-table")
                 row = table[4].find_elements(By.CSS_SELECTOR,"tr.x-grid-row")
                 for d in row:
-                    d.find_elements(By.CSS_SELECTOR,"td.x-grid-cell")[1].find_element(By.CSS_SELECTOR,"img.x-action-col-1").click()
-                    time.sleep(1)
-                    popup = driver.find_element(By.ID,"wnShowChoseItem")
-                    src_image =""
-                    try:
-                        image = popup.find_element(By.ID,"tab-fviewimage-body")
-                        image = image.find_element(By.CSS_SELECTOR,"img.x-component")
-                        nameOfImage = popup.find_elements(By.CSS_SELECTOR,"table.x-grid-table")[1].find_elements(By.CSS_SELECTOR,"tr.x-grid-row")
-                        for name in nameOfImage:
-                            name.click()
-                            time.sleep(1)
-                            src_image += image.get_attribute("src") + " "
-                    except NoSuchElementException:
-                        pass
-                    popup.find_element(By.CSS_SELECTOR,"img.x-tool-close").click()
+                    print(d.find_elements(By.CSS_SELECTOR,"td.x-grid-cell")[4 ].text)
                     worksheet.write(count, 0, arr[0])
                     worksheet.write(count, 1, arr[1])
                     worksheet.write(count, 2, arr[2])
@@ -168,12 +146,11 @@ for t in cacThang:
                     worksheet.write(count,24, d.find_elements(By.CSS_SELECTOR,"td.x-grid-cell")[24].text)
                     worksheet.write(count,25, d.find_elements(By.CSS_SELECTOR,"td.x-grid-cell")[26].text)
                     worksheet.write(count,26, d.find_elements(By.CSS_SELECTOR,"td.x-grid-cell")[27].text)
-                    worksheet.write(count,27, src_image)
-                    worksheet.write(count,28, t)
+                    worksheet.write(count,27, t)
                     count+=1
                 driver.find_elements(By.CSS_SELECTOR,'span.x-tbar-page-next')[1].click()
                 page_c = int(driver.find_elements(By.NAME,'inputItem')[1].get_attribute('value'))
-                time.sleep(1)
+                time.sleep(2)
 #-------------------------------------------            
             driver.find_elements(By.CSS_SELECTOR,"a.x-tab-close-btn")[1].click()
             count_soDoc +=1

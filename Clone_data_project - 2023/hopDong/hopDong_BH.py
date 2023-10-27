@@ -117,13 +117,13 @@ BTN = driver.find_elements(By.ID,'ctl00_mainContent_login1_LoginCtrl_Login')
 BTN[0].click()
 time.sleep(5)
 
-driver.find_element(By.ID,'ext-gen1172').click()
+driver.find_element(By.XPATH,'/html/body/div[2]/div[2]/div/div/table/tbody/tr/td[2]/table/tbody/tr/td[2]/div').click()
 time.sleep(2)
 driver.find_elements(By.CSS_SELECTOR,'li.x-boundlist-item')[0].click()
 time.sleep(1)
 
 
-driver.find_element(By.ID,'ext-gen1202').click()
+driver.find_element(By.XPATH,'/html/body/div[2]/div[4]/div/table/tbody/tr[10]/td/div').click()
 time.sleep(2)
 STARPAGE = 1
 ENDPAGE = int(driver.find_elements(By.CSS_SELECTOR,'div.x-toolbar-text-default')[1].text.replace("của ",""))
