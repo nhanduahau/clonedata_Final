@@ -112,9 +112,9 @@ for t in cacThang:
 #-------------------------------------------
             table = driver.find_elements(By.CSS_SELECTOR,"table.x-grid-table")
             stt = table[3].find_elements(By.CSS_SELECTOR,"tr.x-grid-row")
-            page_c = 0
             maxPage_c = int(driver.find_elements(By.CSS_SELECTOR,'div.x-toolbar-text-default')[4].text.replace("của ",""))
-            while(page_c != maxPage_c):
+            for j in range(0,maxPage_c):
+                print("###################### trang : "+str(j +1)+" #########################")
                 table = driver.find_elements(By.CSS_SELECTOR,"table.x-grid-table")
                 row = table[4].find_elements(By.CSS_SELECTOR,"tr.x-grid-row")
                 for d in row:
@@ -127,8 +127,8 @@ for t in cacThang:
                     worksheet.write(count, 5, arr[5])
                     worksheet.write(count, 6, arr[6])
                     worksheet.write(count, 7, arr[7])
-                    worksheet.write(count,8 , d.find_elements(By.CSS_SELECTOR,"td.x-grid-cell")[2 ].text)
-                    worksheet.write(count,9 , d.find_elements(By.CSS_SELECTOR,"td.x-grid-cell")[3 ].text)
+                    worksheet.write(count, 8, d.find_elements(By.CSS_SELECTOR,"td.x-grid-cell")[2 ].text)
+                    worksheet.write(count, 9, d.find_elements(By.CSS_SELECTOR,"td.x-grid-cell")[3 ].text)
                     worksheet.write(count,10, d.find_elements(By.CSS_SELECTOR,"td.x-grid-cell")[4 ].text)
                     worksheet.write(count,11, d.find_elements(By.CSS_SELECTOR,"td.x-grid-cell")[6 ].text)
                     worksheet.write(count,12, d.find_elements(By.CSS_SELECTOR,"td.x-grid-cell")[6 ].text)
@@ -149,14 +149,13 @@ for t in cacThang:
                     worksheet.write(count,27, t)
                     count+=1
                 driver.find_elements(By.CSS_SELECTOR,'span.x-tbar-page-next')[1].click()
-                page_c = int(driver.find_elements(By.NAME,'inputItem')[1].get_attribute('value'))
-                time.sleep(2)
+                time.sleep(5)
 #-------------------------------------------            
             driver.find_elements(By.CSS_SELECTOR,"a.x-tab-close-btn")[1].click()
             count_soDoc +=1
         page = int(driver.find_element(By.NAME,'inputItem').get_attribute('value'))
         driver.find_element(By.CSS_SELECTOR,'span.x-tbar-page-next').click()
-        time.sleep(2)
+        time.sleep(5)
         print('---------------Trang '+str(page)+' hoàn thành---------------')
     print("---------------Tháng "+t + " hoàn thành---------------")
 workbook.close()

@@ -13,8 +13,8 @@ driver = webdriver.Chrome()
 driver.get("https://app.citywork.vn/gcrm.aspx")
 driver.maximize_window()
 #------------------------------------Số Đọc Chỉ Số--------------------------------------------
-nameOfOutputFile ="Clone_data_project/sodoc/results/soDoc_BH.xlsx" 
-with open("Clone_data_project/input_month.txt", 'r') as file:
+nameOfOutputFile ="Test/soDoc_BH.xlsx" 
+with open("Test/input_month.txt", 'r') as file:
     # Đọc nội dung từ tệp và chia nó thành danh sách
     cacThang = file.read().splitlines()
 #--------------------------------------------------------------------------------
